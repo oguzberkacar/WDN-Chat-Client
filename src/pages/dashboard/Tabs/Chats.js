@@ -26,8 +26,7 @@ function Chats(props) {
 
 	function handleChange(e) {
 		var search = e.target.value;
-		console.log(e.target.value);
-		console.log(AllLastMessages);
+
 		if (search.length > 0) {
 			var lastMessages = AllLastMessages.filter((lastMessage) => {
 				if (lastMessage.chatroom == undefined) {

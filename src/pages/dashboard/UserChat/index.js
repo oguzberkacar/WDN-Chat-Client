@@ -105,7 +105,6 @@ function UserChat(props) {
 			})
 				.then((response) => response.json())
 				.then((responseJson) => {
-					console.log(responseJson);
 					let obj = responseJson;
 					let newMessages = obj.result.messages.data;
 					setMessages((oldArray) => [...newMessages, ...oldArray]);
@@ -136,10 +135,8 @@ function UserChat(props) {
 					let newMessages = [...oldMessages, ...copyMessages];
 					if (ref.current.el) {
 						ref.current.getScrollElement().scrollTop = ref.current.getScrollElement().scrollTop + 200;
-						console.log(ref.current.getScrollElement().scrollTop);
-						console.log(ref.current.getScrollElement().scrollHeight);
 					}
-					console.log(newMessages);
+
 					setMessages(newMessages);
 					props.oldMessageSuccess();
 				})
@@ -159,7 +156,6 @@ function UserChat(props) {
 
 			intObserver.current = new IntersectionObserver((posts) => {
 				if (posts[0].isIntersecting && hasMore) {
-					console.log('We are near the last post!');
 					setPageNum((prev) => prev + 1);
 				}
 			});
@@ -174,8 +170,6 @@ function UserChat(props) {
 
 		let chatIndex = props.chatList.findIndex((e) => e.chat_id == props.activeChatId);
 		let chat = props.chatList[chatIndex];
-
-		console.log(chat);
 
 		if (chat.chatroom == undefined) {
 			messageObj = {
@@ -213,11 +207,6 @@ function UserChat(props) {
 			setMessages(array3);
 		}
 
-		// console.log(orderedList);
-		// setMessages(orderedList);
-
-		// copyChat.messages.data.push(messageObj);
-		// copyChat.last_message = messageObj
 		let messageObjTostate = {};
 
 		if (chat.chatroom == undefined) {

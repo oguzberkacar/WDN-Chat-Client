@@ -84,14 +84,12 @@ function Contacts(props) {
 
 	function openUserChat(e, user) {
 		e.preventDefault();
-		console.log(user);
 		props.chatList.map((i, index) => {
 			if (i.away_user !== undefined && i.away_user.user_id == user.user_id) {
 				// props.activeUser(user);
 				props.setActiveChatId(i.chat_id);
 				return;
 			} else {
-				console.log(props.user);
 				let obj = {
 					isNewMessage: true,
 					chat_id: 'temp',
@@ -159,7 +157,6 @@ function Contacts(props) {
 					users_deleted_info: null,
 				};
 
-				console.log(obj);
 				props.addNewChat(obj);
 				props.setActiveChatId('temp');
 			}

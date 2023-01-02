@@ -8,8 +8,6 @@ import { loginUserSuccess, registerUserSuccess, forgetPasswordSuccess, apiError 
 
 import Cookies from 'js-cookie';
 
-import { getLoggedInUser } from '../../helpers/authUtils';
-
 /**
  * Sets the session
  * @param {*} user
@@ -102,7 +100,6 @@ function* forgetPassword({ payload: { email, type } }) {
 
 			let obj = JSON.parse(response);
 			if (obj.status == 200 && obj.success == false) {
-				console.log(obj.message);
 				obj.message == 'user_not_found' ? yield put(forgetPasswordSuccess('User not found')) : yield put(forgetPasswordSuccess('Email not found'));
 			}
 		}

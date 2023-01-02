@@ -56,7 +56,6 @@ function ChatContainer(props) {
 		obj.messages.data = obj.messages.data.reverse();
 		// eğer hiç yeni mesaj yoksa napcaz
 		if (data.result.messages.total == 0) {
-			console.log('no messages');
 			return;
 		} else if ((props.chatList.length == 0, data.result.messages.total !== 0)) {
 			props.addNewChat(obj);

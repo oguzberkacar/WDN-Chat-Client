@@ -44,7 +44,10 @@ class APIClient {
 		var myHeaders = new Headers(); // Creating Header
 		myHeaders.append('Content-Type', 'application/json');
 		// cors
-		myHeaders.append('Access-Control-Allow-Origin', 'https://wdn-chat-client.vercel.app');
+		myHeaders.append('Access-Control-Allow-Origin', '*');
+		myHeaders.append('Access-Control-Allow-Methods', 'POST');
+		myHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
+		myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
 		var raw = JSON.stringify(data);
 		var requestOptions = {

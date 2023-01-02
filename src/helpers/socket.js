@@ -42,7 +42,6 @@ const SocketConnetion = () => {
 	});
 	socket.on('user_list', function (data) {
 		dispatch(setOnlineUsers(data));
-		// console.log(data);
 	});
 
 	socket.on('new_message', function (data) {

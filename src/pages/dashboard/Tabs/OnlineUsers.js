@@ -27,28 +27,21 @@ const OnlineUsers = (props) => {
 	useEffect(() => {
 		if (props.list !== undefined) {
 			let tempList = props.list;
-			// console.log(props.user);
-			// delete which user_id equals to props.user.user_id
+
 			tempList = tempList.filter((i) => i.user_id !== props.user.id);
 			tempList = tempList.filter((i) => i.user_id !== 'Visitor');
-			// tempList = tempList.filter((i) => i.is_online !== 0);
 
-			// console.log(tempList);s
 			setOnlineUserList(tempList);
 		}
 	}, [props.list, props.user]);
 
 	function openUserChat(chat) {
 		// searcing index of matching chatid at users
-		console.log(chat);
 		let userchatid = chat.user_id;
 		let chatFound = false;
 		props.chatList.map((item, index) => {
 			if (item.chatroom == undefined) {
-				console.log(item);
-
 				if (item.away_user.user_id == userchatid) {
-					console.log('found');
 					chatFound = true;
 					props.setActiveChatId(item.chat_id);
 					return;
@@ -56,7 +49,6 @@ const OnlineUsers = (props) => {
 			}
 		});
 		if (!chatFound) {
-			console.log('not found');
 			let obj = {
 				isNewMessage: true,
 				chat_id: 'temp',
@@ -123,9 +115,7 @@ const OnlineUsers = (props) => {
 				users: null,
 				users_deleted_info: null,
 			};
-			console.log(chat);
 
-			console.log(obj);
 			props.addNewChat(obj);
 			props.setActiveChatId('temp');
 		}
