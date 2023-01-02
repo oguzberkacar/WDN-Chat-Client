@@ -64,8 +64,7 @@ function* login({ payload: { username, password, history } }) {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			'Access-Control-Allow-Headers': 'Content-Type',
-			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Origin': 'https://wdn-chat-client.vercel.app',
 			'Access-Control-Allow-Credentials': 'true',
 		},
 		body: JSON.stringify({
@@ -84,6 +83,8 @@ function* login({ payload: { username, password, history } }) {
 
 			return result;
 		});
+
+	// fetch('https://api.devapp.one');
 }
 
 /**
