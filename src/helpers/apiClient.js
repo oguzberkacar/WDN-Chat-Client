@@ -50,8 +50,9 @@ class APIClient {
     let Access_token = token ? token : Cookies.get("access_token");
     var myHeaders = new Headers(); // Creating Header
     myHeaders.append("Content-Type", "application/json");
+    // cors
+    myHeaders.append("Access-Control-Allow-Origin", "*");
     myHeaders.append("Authorization", `Bearer ${Access_token}`);
-    
 
     var requestOptions = {
       method: "GET",
@@ -81,14 +82,13 @@ class APIClient {
     myHeaders.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     myHeaders.append("Access-Control-Allow-Headers", "Content-Type");
     myHeaders.append("Access-Control-Allow-Credentials", "true");
-    
+
     var raw = JSON.stringify(data);
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
-     
     };
 
     let obj = fetch(`https://api.devapp.one/${url}`, requestOptions)
@@ -98,7 +98,7 @@ class APIClient {
       .then((result) => {
         return result;
       });
-     
+
     return obj;
   };
 
