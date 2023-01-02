@@ -51,7 +51,7 @@ const Login = (props) => {
 			myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
 			var raw = JSON.stringify({
-				email: values.email,
+				username: values.email,
 				password: values.password,
 				device_id: '1',
 			});
@@ -68,6 +68,8 @@ const Login = (props) => {
 				})
 				.then((result) => {
 					let obj = JSON.parse(result);
+					console.log(obj);
+					Cookies.set('access_token', obj.access_token);
 				});
 		},
 	});
