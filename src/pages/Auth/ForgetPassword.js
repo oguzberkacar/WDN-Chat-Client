@@ -123,30 +123,7 @@ const ForgetPassword = (props) => {
                     {props.error && (
                       <Alert variant="danger">{props.error}</Alert>
                     )}
-                    {/* <div className="Container">
-                      <div className="row justify-content-center my-4 w-100 mx-auto gap-1">
-                        <div className="col-6">
-                          <Button
-                            color="primary"
-                            
-                            className="waves-effect waves-light"
-                            type="button"
-                          >
-                            {t("Reset")}
-                          </Button>
-                        </div>
-                        <div className="col-6 w-100">
-                          <Button
-                            color="primary"
-                            
-                            className="waves-effect waves-light"
-                            type="button"
-                          >
-                            {t("Reset")}
-                          </Button>
-                        </div>
-                      </div>
-                    </div> */}
+
                     <Row className="justify-content-center my-4">
                       <Col className="pr-0">
                         <Button
@@ -237,10 +214,6 @@ const ForgetPassword = (props) => {
                           <FormGroup className="mb-4">
                             <Label className="form-label">{t("Phone")}</Label>
                             <InputGroup className="mb-3 bg-soft-light input-group-lg rounded-lg">
-                              {/* <span className="input-group-text border-light text-muted">
-                          <i className="ri-user-2-line"></i>
-                        </span> */}
-                              {/* <span style={{width:"60px"}} className="input-group-text border-light text-muted d-grid justify-content-center">*/}
                               <Dropdown
                                 nav
                                 isOpen={dropdownOpen2}

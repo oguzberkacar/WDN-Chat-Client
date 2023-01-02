@@ -1,17 +1,8 @@
-import React, {
-  Component,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import { Input, InputGroup } from "reactstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-//simplebar
-import SimpleBar from "simplebar-react";
-import InfiniteScroll from "react-infinite-scroll-component";
 //actions
 import {
   setconversationNameInOpenChat,
@@ -29,29 +20,11 @@ import Moment from "react-moment";
 
 function Chats(props) {
   const [state, setState] = useState([]);
-  // const [search, setsearch] = useState("");
-  // const [searchResult, setsearchResult] = useState([]);
-  // const [recentChatList, setRecentChatList] = useState(props.recentChatList);
-  // const [listLenght, setListLenght] = useState(8);
-  // useEffect(() => {
-  //   setState(props);
-  // }, [props]);
 
   const [AllLastMessages, setAllLastMessages] = useState([]);
 
   useEffect(() => {
-    console.log("props.chatList", props.chatList);
-
-    // props.chatList.map((item, index) => {
-    //   setAllLastMessages(item);
-    // });
-    console.log("AllLastMessages", AllLastMessages);
-
     setAllLastMessages(props.chatList);
-
-    // props.chatList.map((item, index) => {
-    //   setMessages(item);
-    // });
   }, [props.chatList]);
 
   useEffect(() => {}, [AllLastMessages]);
@@ -115,12 +88,6 @@ function Chats(props) {
     if (userChat) {
       userChat[0].classList.add("user-chat-show");
     }
-
-    // //removes unread badge if user clicks
-    // var unread = document.getElementById("unRead" + chat.id);
-    // if (unread) {
-    //   unread.style.display = "none";
-    // }
   }
 
   const cutList = (i) => {
@@ -135,7 +102,6 @@ function Chats(props) {
     <React.Fragment>
       <div>
         <div className="px-4 pt-4">
-          {/* Needs Translate */}
           <h4 className="mb-4">{t("Chat")}</h4>
           {isUserLoggedIn && (
             <div className="search-box chat-search-box">
@@ -146,8 +112,7 @@ function Chats(props) {
                 >
                   <i className="ri-search-line search-icon font-size-18"></i>
                 </span>
-                {/* Needs Translate */}
-                {/* Placeholder */}
+
                 <Input
                   type="text"
                   value={state.searchChat}
@@ -158,10 +123,8 @@ function Chats(props) {
               </InputGroup>
             </div>
           )}
-          {/* Search Box */}
         </div>
 
-        {/* online users */}
         <OnlineUsers />
 
         <div className="px-2">

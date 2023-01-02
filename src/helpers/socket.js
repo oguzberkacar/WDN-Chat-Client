@@ -1,10 +1,7 @@
-import React, { useContext, useState } from "react";
-import { connect, useDispatch, useSelector, useStore } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import {
-  addNewChat,
-  getUser,
   setNewMessage,
   setOnlineUsers,
   updateSignleMessage,
@@ -13,8 +10,6 @@ import {
 import { setActiveChatId } from "../redux/actions";
 
 import { ReactReduxContext } from "react-redux";
-
-let user = [];
 
 var socket = io("https://chat.spapp.click", {
   secure: true,
@@ -50,7 +45,6 @@ const SocketConnetion = () => {
     socket.emit("connected", conncetData);
   });
   socket.on("user_list", function (data) {
-    // props.setOnlineUsers(data);
     dispatch(setOnlineUsers(data));
     console.log(data);
   });
@@ -166,8 +160,6 @@ const SendChatRoomMessageToSocket = (data) => {
   };
   socket.emit("chat_room_new_message_add", data);
 };
-
-// export default withRouter(connect(mapStateToProps, { getUser })());
 
 export {
   SocketConnetion,

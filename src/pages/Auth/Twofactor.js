@@ -23,25 +23,17 @@ import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 
 //redux store
-import { loginUser, apiError, loginUserTwofactor } from "../../redux/actions";
+import { apiError, loginUserTwofactor } from "../../redux/actions";
 
 //Import Images
 import logodark from "../../assets/images/logo-dark.png";
 import logolight from "../../assets/images/logo-light.png";
-
-import Cookies from "js-cookie";
-import { LOGIN_USER_SUCCESS } from "../../redux/auth/constants";
 
 /**
  * Twofactor component
  * @param {*} props
  */
 const Twofactor = (props) => {
-  // useEffect(() => {
-  //   Cookies.get("access_token") &&
-  //     props.history.push("/dashboard");
-  // }, []);
-
   /* intilize t variable for multi language implementation */
   const { t } = useTranslation();
 
@@ -144,10 +136,7 @@ const Twofactor = (props) => {
               <div className="mt-5 text-center">
                 <p>
                   {t("Don't have an account")} ?{" "}
-                  <Link
-                    to="register"
-                    className="font-weight-medium wdntext1"
-                  >
+                  <Link to="register" className="font-weight-medium wdntext1">
                     {" "}
                     {t("Signup now")}{" "}
                   </Link>{" "}
@@ -168,5 +157,5 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, {loginUserTwofactor, apiError })(Twofactor)
+  connect(mapStateToProps, { loginUserTwofactor, apiError })(Twofactor)
 );

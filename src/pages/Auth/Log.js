@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useLocation, withRouter } from "react-router-dom";
 import { getUser } from "../../redux/actions";
-import GetUserToState from "./GetUserToState";
 
 //redux store
 
@@ -31,7 +30,6 @@ const Log = (props) => {
           <span className="sr-only"></span>
         </div>
       </div>
-      <GetUserToState props={props} />
     </React.Fragment>
   );
 };

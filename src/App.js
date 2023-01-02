@@ -3,11 +3,6 @@ import Routes from "./routes";
 
 //Import Scss
 import "./assets/scss/themes.scss";
-import { io } from "socket.io-client";
-
-//fackbackend
-
-
 
 function App() {
   return <Routes />;

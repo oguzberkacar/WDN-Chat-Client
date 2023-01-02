@@ -1,26 +1,14 @@
-import { all, call, fork, put, takeEvery } from "redux-saga/effects";
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 
-import { APIClient } from "../../helpers/apiClient";
+import { APIClient } from '../../helpers/apiClient';
 
-import {
-  LOGIN_USER,
-  LOGOUT_USER,
-  REGISTER_USER,
-  FORGET_PASSWORD,
-  LOGIN_USER_TWOFACTOR,
-  GET_USER,
-} from "./constants";
+import { LOGIN_USER, LOGOUT_USER, REGISTER_USER, FORGET_PASSWORD, LOGIN_USER_TWOFACTOR, GET_USER } from './constants';
 
-import {
-  loginUserSuccess,
-  registerUserSuccess,
-  forgetPasswordSuccess,
-  apiError,
-} from "./actions";
+import { loginUserSuccess, registerUserSuccess, forgetPasswordSuccess, apiError } from './actions';
 
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
-import { getLoggedInUser } from "../../helpers/authUtils";
+import { getLoggedInUser } from '../../helpers/authUtils';
 
 /**
  * Sets the session
@@ -35,42 +23,64 @@ const get = new APIClient().get;
  */
 
 function* login({ payload: { username, password, history } }) {
-  const device_id = 1;
-  try {
-    const response = yield call(create, "auth/login", {
-      username,
-      password,
-      device_id,
-    });
-    let obj = JSON.parse(response);
-    if (obj.error && obj.error.code === 404) {
-      yield put(apiError("Connection error, please try again."));
-    }
-    if (obj.status === 200 && obj.success == true) {
-      if (obj.two_factor == 0) {
-        Cookies.set("access_token", obj.access_token);
-        const user = yield call(get, "profile");
-        let newUser = JSON.parse(user);
-        console.log(newUser);
-        // yield put(loginUserSuccess(newUser.result));
+	const device_id = 1;
+	// try {
+	//   const response = yield call(create, "auth/login", {
+	//     username,
+	//     password,
+	//     device_id,
+	//   });
+	//   let obj = JSON.parse(response);
+	//   if (obj.error && obj.error.code === 404) {
+	//     yield put(apiError("Connection error, please try again."));
+	//   }
+	//   if (obj.status === 200 && obj.success == true) {
+	//     if (obj.two_factor == 0) {
+	//       Cookies.set("access_token", obj.access_token);
+	//       const user = yield call(get, "profile");
+	//       let newUser = JSON.parse(user);
+	//       console.log(newUser);
+	//       // yield put(loginUserSuccess(newUser.result));
 
-        history.push("/dashboard");
-      } else if (obj.two_factor == 1) {
-        // yield put(loginUserSuccess(obj.base64_code));
-        Cookies.set("base_64", obj.base64_code);
-        history.push("/twofactor");
-      }
-    }
-    if (obj.status === 401 && obj.success == false) {
-      let errorMessage = "";
-      obj.message == "username_does_not_match"
-        ? (errorMessage = "Username does not match")
-        : (errorMessage = "Password does not match");
-      yield put(apiError(errorMessage));
-    }
-  } catch (error) {
-    // yield put(apiError(error));
-  }
+	//       history.push("/dashboard");
+	//     } else if (obj.two_factor == 1) {
+	//       // yield put(loginUserSuccess(obj.base64_code));
+	//       Cookies.set("base_64", obj.base64_code);
+	//       history.push("/twofactor");
+	//     }
+	//   }
+	//   if (obj.status === 401 && obj.success == false) {
+	//     let errorMessage = "";
+	//     obj.message == "username_does_not_match"
+	//       ? (errorMessage = "Username does not match")
+	//       : (errorMessage = "Password does not match");
+	//     yield put(apiError(errorMessage));
+	//   }
+	// } catch (error) {
+	// yield put(apiError(error));
+
+	// }
+	fetch(`https://api.devapp.one/auth/login`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			username: username,
+			password: password,
+			device_id: device_id,
+		}),
+	})
+		.then((response) => {
+			return response.text();
+		})
+		.then((result) => {
+			let obj = JSON.parse(result);
+			console.log(obj);
+			Cookies.set('access_token', obj.access_token);
+
+			return result;
+		});
 }
 
 /**
@@ -78,140 +88,131 @@ function* login({ payload: { username, password, history } }) {
  * @param {*} param0
  */
 function* logout({ payload: { history } }) {
-  try {
-    Cookies.remove("access_token");
-    yield call(() => {
-      history.push("/login");
-    });
-  } catch (error) {}
+	try {
+		Cookies.remove('access_token');
+		yield call(() => {
+			history.push('/login');
+		});
+	} catch (error) {}
 }
 
 /**
  * Register the user
  */
 function* register({ payload: { user } }) {
-  let data = {
-    status: true,
-    username: user.username,
-    password: user.password,
-    email: user.email,
-    phone: user.phone,
-    phone_verify: "0",
-    avatar: "",
-    reference_code: "",
-    user_lang_id: 2,
-  };
+	let data = {
+		status: true,
+		username: user.username,
+		password: user.password,
+		email: user.email,
+		phone: user.phone,
+		phone_verify: '0',
+		avatar: '',
+		reference_code: '',
+		user_lang_id: 2,
+	};
 
-  const response = yield call(create, "auth/register", data);
-  let obj = JSON.parse(response);
+	const response = yield call(create, 'auth/register', data);
+	let obj = JSON.parse(response);
 
-  //
+	//
 }
 
 /**
  * forget password
  */
 function* forgetPassword({ payload: { email, type } }) {
-  try {
-    if (type == "email") {
-      const response = yield call(get, "password-reset-with-email", {
-        email: email,
-      });
+	try {
+		if (type == 'email') {
+			const response = yield call(get, 'password-reset-with-email', {
+				email: email,
+			});
 
-      let obj = JSON.parse(response);
-      if (obj.status == 200 && obj.success == false) {
-        console.log(obj.message);
-        obj.message == "user_not_found"
-          ? yield put(forgetPasswordSuccess("User not found"))
-          : yield put(forgetPasswordSuccess("Email not found"));
-      }
-    }
-    if (type == "phone") {
-      const response = yield call(get, "password-reset-with-phone", {
-        phone: email,
-      });
+			let obj = JSON.parse(response);
+			if (obj.status == 200 && obj.success == false) {
+				console.log(obj.message);
+				obj.message == 'user_not_found' ? yield put(forgetPasswordSuccess('User not found')) : yield put(forgetPasswordSuccess('Email not found'));
+			}
+		}
+		if (type == 'phone') {
+			const response = yield call(get, 'password-reset-with-phone', {
+				phone: email,
+			});
 
-      let obj = JSON.parse(response);
-    }
-  } catch (error) {
-    yield put(apiError(error));
-  }
+			let obj = JSON.parse(response);
+		}
+	} catch (error) {
+		yield put(apiError(error));
+	}
 }
 
 function* loginUserTwofactor({ payload: { base64, code, history } }) {
-  let data = {
-    base64_code: base64,
-    two_factor_code: code,
-  };
-  if (base64 == null) {
-    data.base64_code = Cookies.get("base_64");
+	let data = {
+		base64_code: base64,
+		two_factor_code: code,
+	};
+	if (base64 == null) {
+		data.base64_code = Cookies.get('base_64');
 
-    if (Cookies.get("base_64") == undefined) {
-      history.push("/login");
-      yield put(apiError("Connection error, please login again."));
-    }
-  }
+		if (Cookies.get('base_64') == undefined) {
+			history.push('/login');
+			yield put(apiError('Connection error, please login again.'));
+		}
+	}
 
-  try {
-    const response = yield call(create, "two-factor/login", data);
-    let obj = JSON.parse(response);
-    if (obj.error && obj.error.code === 404) {
-      yield put(apiError("Connection error, please try again."));
-    }
+	try {
+		const response = yield call(create, 'two-factor/login', data);
+		let obj = JSON.parse(response);
+		if (obj.error && obj.error.code === 404) {
+			yield put(apiError('Connection error, please try again.'));
+		}
 
-    if (obj.status === 200 && obj.success == true) {
-      yield put(loginUserSuccess(obj.access_token));
-      Cookies.set("access_token", obj.access_token);
-      Cookies.remove("base_64");
-      history.push("/dashboard");
-    }
-    if (obj.status === 200 && obj.success == false) {
-      let errorMessage = "Code is wrong, please try again.";
+		if (obj.status === 200 && obj.success == true) {
+			yield put(loginUserSuccess(obj.access_token));
+			Cookies.set('access_token', obj.access_token);
+			Cookies.remove('base_64');
+			history.push('/dashboard');
+		}
+		if (obj.status === 200 && obj.success == false) {
+			let errorMessage = 'Code is wrong, please try again.';
 
-      yield put(apiError(errorMessage));
-    }
-  } catch (error) {
-    // yield put(apiError(error));
-  }
+			yield put(apiError(errorMessage));
+		}
+	} catch (error) {
+		// yield put(apiError(error));
+	}
 }
 
 function* getUser({ payload: { user } }) {
-  loginUserSuccess(user);
+	loginUserSuccess(user);
 }
 
 export function* watchgetUser() {
-  yield takeEvery(GET_USER, getUser);
+	yield takeEvery(GET_USER, getUser);
 }
 
 export function* watchLoginUser() {
-  yield takeEvery(LOGIN_USER, login);
+	yield takeEvery(LOGIN_USER, login);
 }
 
 export function* watchtwofactor() {
-  yield takeEvery(LOGIN_USER_TWOFACTOR, loginUserTwofactor);
+	yield takeEvery(LOGIN_USER_TWOFACTOR, loginUserTwofactor);
 }
 
 export function* watchLogoutUser() {
-  yield takeEvery(LOGOUT_USER, logout);
+	yield takeEvery(LOGOUT_USER, logout);
 }
 
 export function* watchRegisterUser() {
-  yield takeEvery(REGISTER_USER, register);
+	yield takeEvery(REGISTER_USER, register);
 }
 
 export function* watchForgetPassword() {
-  yield takeEvery(FORGET_PASSWORD, forgetPassword);
+	yield takeEvery(FORGET_PASSWORD, forgetPassword);
 }
 
 function* authSaga() {
-  yield all([
-    fork(watchLoginUser),
-    fork(watchLogoutUser),
-    fork(watchRegisterUser),
-    fork(watchForgetPassword),
-    fork(watchtwofactor),
-    fork(watchgetUser),
-  ]);
+	yield all([fork(watchLoginUser), fork(watchLogoutUser), fork(watchRegisterUser), fork(watchForgetPassword), fork(watchtwofactor), fork(watchgetUser)]);
 }
 
 export default authSaga;

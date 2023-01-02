@@ -156,10 +156,6 @@ const Register = (props) => {
                       <div className="mb-3">
                         <Label className="form-label">{t("Phone")}</Label>
                         <InputGroup className="mb-3 bg-soft-light input-group-lg rounded-lg">
-                          {/* <span className="input-group-text border-light text-muted">
-                            <i className="ri-user-2-line"></i>
-                          </span> */}
-                          {/* <span style={{width:"60px"}} className="input-group-text border-light text-muted d-grid justify-content-center">*/}
                           <Dropdown
                             nav
                             isOpen={dropdownOpen2}
@@ -203,7 +199,7 @@ const Register = (props) => {
                           ) : null}
                         </InputGroup>
                       </div>
-                      {/* email */}
+
                       <div className="mb-3">
                         <Label className="form-label">{t("Email")}</Label>
                         <InputGroup className="input-group bg-soft-light rounded-3 mb-3">
@@ -235,7 +231,6 @@ const Register = (props) => {
                           ) : null}
                         </InputGroup>
                       </div>
-                      {/* password */}
 
                       <FormGroup className="mb-4">
                         <Label className="form-label">{t("Password")}</Label>
@@ -268,7 +263,7 @@ const Register = (props) => {
                           ) : null}
                         </InputGroup>
                       </FormGroup>
-                      {/* confirm password */}
+
                       <FormGroup className="mb-4">
                         <Label className="form-label">
                           {t("Password Confirm")}

@@ -14,7 +14,7 @@ import {
   Label,
   InputGroup,
 } from "reactstrap";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -30,7 +30,6 @@ import logodark from "../../assets/images/logo-dark.png";
 import logolight from "../../assets/images/logo-light.png";
 
 import Cookies from "js-cookie";
-import { LOGIN_USER_SUCCESS } from "../../redux/auth/constants";
 
 /**
  * Login component
@@ -156,17 +155,6 @@ const Login = (props) => {
                       </FormGroup>
 
                       <div className="form-check mb-4">
-                        {/* <Input
-                          type="checkbox"
-                          className="form-check-input"
-                          id="remember-check"
-                        />
-                        <Label
-                          className="form-check-label"
-                          htmlFor="remember-check"
-                        >
-                          {t("Remember me")}
-                        </Label> */}
                         <div className="float-end">
                           <Link
                             to="forget-password"

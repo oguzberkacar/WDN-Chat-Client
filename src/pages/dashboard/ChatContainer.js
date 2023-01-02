@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
-import { io } from "socket.io-client";
 import ChatLeftSidebar from "./ChatLeftSidebar";
 import UserChat from "./UserChat";
 
@@ -23,11 +22,8 @@ import {
 } from "../../redux/actions";
 
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
-import Cookies from "js-cookie";
+import { withRouter } from "react-router-dom";
 import _ from "lodash";
-import SocketContainer from "./SocketContainer";
-import { ChangeTheActiveUser, socket } from "../../helpers/socket";
 
 function ChatContainer(props) {
   useEffect(() => {

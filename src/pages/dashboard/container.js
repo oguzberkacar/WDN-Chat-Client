@@ -1,41 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
-import ChatLeftSidebar from "./ChatLeftSidebar";
-import UserChat from "./UserChat";
 
 import {
   getUser,
   isLogining,
-  setFullUser,
-  setOnlineUsers,
-  updateLastMessages,
-  addLoggedinUser,
-  activeUser,
   setchatList,
-  addNewChat,
   updateChatListMessage,
   setActiveChatId,
-  deleteChat,
-  changeLastMessage,
-  updateSignleMessage,
-  setConnectionData,
   stopLoading,
 } from "../../redux/actions";
 
 import { connect } from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Cookies from "js-cookie";
 import _ from "lodash";
 import SocketContainer from "./SocketContainer";
-import {
-  ChangeTheActiveUser,
-  SendChatRoomMessageToSocket,
-  socket,
-  SocketConnetion,
-} from "../../helpers/socket";
+
 import ChatContainer from "./ChatContainer";
-import dateRange from "availity-reactstrap-validation/lib/AvValidator/dateRange";
 
 function DashboardContainer(props) {
   let data = {};
