@@ -37,9 +37,7 @@ function* login({ payload: { username, password, history } }) {
 		if (obj.status === 200 && obj.success == true) {
 			if (obj.two_factor == 0) {
 				Cookies.set('access_token', obj.access_token);
-				const user = yield call(get, 'profile');
-				let newUser = JSON.parse(user);
-				console.log(newUser);
+				history.push('/dashboard');
 
 				history.push('/dashboard');
 			} else if (obj.two_factor == 1) {
