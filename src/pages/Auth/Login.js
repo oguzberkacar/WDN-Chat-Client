@@ -47,8 +47,8 @@ const Login = (props) => {
 			// cors
 			myHeaders.append('Access-Control-Allow-Origin', '*');
 			myHeaders.append('Access-Control-Allow-Methods', '*');
-			myHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
-			myHeaders.append('Access-Control-Allow-Credentials', 'true');
+			// myHeaders.append('Access-Control-Allow-Headers', 'Content-Type');
+			// myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
 			var raw = JSON.stringify({
 				username: values.email,
