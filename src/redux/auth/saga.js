@@ -64,7 +64,9 @@ function* login({ payload: { username, password, history } }) {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Content-Type',
 			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Credentials': 'true',
 		},
 		body: JSON.stringify({
 			username: username,
