@@ -52,7 +52,7 @@ class APIClient {
     myHeaders.append("Content-Type", "application/json");
     // cors
     myHeaders.append("Access-Control-Allow-Origin", "*");
-    myHeaders.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    // myHeaders.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     myHeaders.append("Access-Control-Allow-Headers", "Content-Type");
     myHeaders.append("Access-Control-Allow-Credentials", "true");
 
