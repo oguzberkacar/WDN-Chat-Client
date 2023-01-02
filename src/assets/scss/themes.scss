@@ -1,9 +1,9 @@
 //Import Icon css
-@import "./icons.scss";
+@import './icons.scss';
 
 //light mode
-@import "./bootstrap.scss";
-@import "./app.scss";
+@import './bootstrap.scss';
+@import './app.scss';
 
 // rtl mode
 
@@ -16,252 +16,263 @@
 // @import "./custom/rtl/text-rtl";
 
 .wdncolor {
-  background: linear-gradient(to right, #f14d62, #eb436f) !important;
+	background: linear-gradient(to right, #f14d62, #eb436f) !important;
 }
 
 .wdnborder {
-  border-color: #f14d62 !important;
+	border-color: #f14d62 !important;
 }
 
 .wdnbg1 {
-  background-color: #f14d62 !important;
+	background-color: #f14d62 !important;
 }
 
 .wdnbg2 {
-  background-color: #eb436f !important;
+	background-color: #eb436f !important;
 }
 
 .wdntext1 {
-  color: #f14d62 !important;
+	color: #f14d62 !important;
 }
 
 .wdntext2 {
-  color: #eb436f !important;
+	color: #eb436f !important;
 }
 
 .onlinew {
-  width: 60px;
+	width: 60px;
 }
 
 .onlineuseravatar {
-  object-fit: cover !important;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
+	object-fit: cover !important;
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
 }
 .avatarBW {
-  border: 1px solid white;
+	border: 1px solid white;
 }
 
 .avatarBB {
-  border: 1px solid black;
+	border: 1px solid black;
 }
 
 .fab {
-  color: #f14d62;
-  border-radius: 50%;
-  padding: 10px;
-  margin: 10px;
-  position: fixed;
-  bottom: 100px;
-  right: 200px;
-  border: 1px sloid black;
+	color: #f14d62;
+	border-radius: 50%;
+	padding: 10px;
+	margin: 10px;
+	position: fixed;
+	bottom: 100px;
+	right: 200px;
+	border: 1px sloid black;
 }
 
 .scrollflow {
-  // making scrollable but now showing the scroll bar
-  overflow-y: hidden;
-  overflow-x: scroll;
-  cursor: grab;
+	// making scrollable but now showing the scroll bar
+	overflow-y: hidden;
+	overflow-x: scroll;
+	cursor: grab;
 }
 
 .scrollflow::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
+	display: none; /* for Chrome, Safari, and Opera */
 }
 
 .scrollflow::-webkit-scrollbar-track {
-  display: none; /* for Chrome, Safari, and Opera */
+	display: none; /* for Chrome, Safari, and Opera */
 }
 
 .scrollflow::-webkit-scrollbar-thumb {
-  display: none; /* for Chrome, Safari, and Opera */
+	display: none; /* for Chrome, Safari, and Opera */
 }
 
 .scrollflow::-webkit-scrollbar-button {
-  display: none; /* for Chrome, Safari, and Opera */
+	display: none; /* for Chrome, Safari, and Opera */
 }
 
 .scrollflow::-webkit-scrollbar-corner {
-  display: none; /* for Chrome, Safari, and Opera */
+	display: none; /* for Chrome, Safari, and Opera */
 }
 
 .nav-item {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .dropdown {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .slick-slide {
-  margin-left: 8px;
-  margin-right: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
 }
 
 .slick-arrow {
-  display: none;
+	display: none;
 }
 
 .emoji-mart {
-  border: none !important;
+	border: none !important;
 }
 
 .emoji-mart-preview {
-  display: none !important;
+	display: none !important;
 }
 
 .emoji-mart-bar {
-  border: none !important;
+	border: none !important;
 }
 
 .alice-carousel__stage-item {
-  margin-left: 8px;
-  margin-right: 8px !important;
-  width: 71px !important;
+	margin-left: 8px;
+	margin-right: 8px !important;
+	width: 71px !important;
 }
 
 .input-file {
-  label {
-    margin-bottom: 0;
-  }
-  input[type="file"] {
-    display: none;
-  }
+	label {
+		margin-bottom: 0;
+	}
+	input[type='file'] {
+		display: none;
+	}
 }
 
 .emoji-mart-light {
-  background-color: $card-bg !important;
+	background-color: $card-bg !important;
 }
 
 .emoji-mart-search {
-  input {
-    background-color: $card-bg !important;
-    border-color: $card-border-color !important;
-  }
+	input {
+		background-color: $card-bg !important;
+		border-color: $card-border-color !important;
+	}
 }
 
 .emoji-mart-category-label {
-  span {
-    background-color: $card-bg !important;
-    color: $gray-700;
-  }
+	span {
+		background-color: $card-bg !important;
+		color: $gray-700;
+	}
 }
 
 .emoji-mart-category {
-  .emoji-mart-emoji {
-    &:hover {
-      background-color: $gray-300 !important;
-    }
+	.emoji-mart-emoji {
+		&:hover {
+			background-color: $gray-300 !important;
+		}
 
-    &::before {
-      background-color: $gray-300 !important;
-      border-radius: 100% !important;
-    }
-  }
+		&::before {
+			background-color: $gray-300 !important;
+			border-radius: 100% !important;
+		}
+	}
 }
 .w-70 {
-  width: 73% !important;
+	width: 73% !important;
 }
 
 .ctext-wrap-content {
-  animation: flyIn 0.6s ease-in-out;
+	animation: flyIn 0.6s ease-in-out;
 }
 
 .blank-div {
-  width: 36px;
-  height: 36px;
+	width: 36px;
+	height: 36px;
 }
 
 .profile-user-dropdown {
-  .dropdown-item {
-    &.active {
-      color: $white;
-      text-decoration: none;
-      background-color: $primary;
-    }
-  }
+	.dropdown-item {
+		&.active {
+			color: $white;
+			text-decoration: none;
+			background-color: $primary;
+		}
+	}
 }
 .dot_remove {
-  .alice-carousel__dots,
-  .alice-carousel__prev-btn,
-  .alice-carousel__next-btn {
-    display: none !important;
-  }
+	.alice-carousel__dots,
+	.alice-carousel__prev-btn,
+	.alice-carousel__next-btn {
+		display: none !important;
+	}
 }
 .close {
-  background: transparent;
-  border: 0;
-  font-size: 30px;
-  margin: 10px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0.5;
-  width: 1em;
-  height: 1em;
-  z-index: 2;
+	background: transparent;
+	border: 0;
+	font-size: 30px;
+	margin: 10px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0.5;
+	width: 1em;
+	height: 1em;
+	z-index: 2;
 }
 
 //emoji dropdown menu
 .emoji-dropdown {
-  .dropdown-menu {
-    animation: none;
-  }
+	.dropdown-menu {
+		animation: none;
+	}
 }
 
 .input-group-text {
-  background-color: var(--#{$variable-prefix}gray-200);
+	background-color: var(--#{$variable-prefix}gray-200);
 }
 
 .bg-soft-light {
-  background-color: var(--#{$variable-prefix}light-rgb) !important;
+	background-color: var(--#{$variable-prefix}light-rgb) !important;
 }
 
-[data-layout-mode="dark"] {
-  .auth-logo {
-    .logo-dark {
-      display: none;
-    }
-    .logo-light {
-      display: block;
-    }
-  }
-  .emoji-categories {
-    background-color: $white;
-  }
-  .emoji-picker-react {
-    background-color: var(--#{$variable-prefix}gray-200) !important;
-    border-color: var(--#{$variable-prefix}gray-200) !important;
-    box-shadow: 0 5px 10px var(--#{$variable-prefix}gray-200) !important;
-  }
-  .emoji-search {
-    background-color: var(--#{$variable-prefix}input-bg) !important;
-    border-color: var(--#{$variable-prefix}input-bg) !important;
-    color: $input-color;
-  }
-  .emoji-picker-react .emoji-group:before {
-    background-color: var(--#{$variable-prefix}gray-200) !important;
-  }
+[data-layout-mode='dark'] {
+	.auth-logo {
+		.logo-dark {
+			display: none;
+		}
+		.logo-light {
+			display: block;
+		}
+	}
+	.emoji-categories {
+		background-color: $white;
+	}
+	.emoji-picker-react {
+		background-color: var(--#{$variable-prefix}gray-200) !important;
+		border-color: var(--#{$variable-prefix}gray-200) !important;
+		box-shadow: 0 5px 10px var(--#{$variable-prefix}gray-200) !important;
+	}
+	.emoji-search {
+		background-color: var(--#{$variable-prefix}input-bg) !important;
+		border-color: var(--#{$variable-prefix}input-bg) !important;
+		color: $input-color;
+	}
+	.emoji-picker-react .emoji-group:before {
+		background-color: var(--#{$variable-prefix}gray-200) !important;
+	}
 }
 
 .profile-user-dropdown {
-  &.dropup {
-    .dropdown-menu {
-      bottom: 51px;
-      top: auto !important;
-      &.show {
-        top: auto !important;
-      }
-    }
-  }
+	&.dropup {
+		.dropdown-menu {
+			bottom: 51px !important;
+			// left: -100px !important;
+			top: auto !important;
+			right: 20px !important;
+			&.show {
+				top: auto !important;
+			}
+			// add media query if px belows 750px
+			@media (max-width: 750px) {
+				left: -50px !important;
+				right: 0 !important;
+			}
+			@media (max-width: 500px) {
+				left: -100px !important;
+				right: 0 !important;
+			}
+		}
+	}
 }

@@ -24,67 +24,37 @@ const get = new APIClient().get;
 
 function* login({ payload: { username, password, history } }) {
 	const device_id = 1;
-	// try {
-	//   const response = yield call(create, "auth/login", {
-	//     username,
-	//     password,
-	//     device_id,
-	//   });
-	//   let obj = JSON.parse(response);
-	//   if (obj.error && obj.error.code === 404) {
-	//     yield put(apiError("Connection error, please try again."));
-	//   }
-	//   if (obj.status === 200 && obj.success == true) {
-	//     if (obj.two_factor == 0) {
-	//       Cookies.set("access_token", obj.access_token);
-	//       const user = yield call(get, "profile");
-	//       let newUser = JSON.parse(user);
-	//       console.log(newUser);
-	//       // yield put(loginUserSuccess(newUser.result));
-
-	//       history.push("/dashboard");
-	//     } else if (obj.two_factor == 1) {
-	//       // yield put(loginUserSuccess(obj.base64_code));
-	//       Cookies.set("base_64", obj.base64_code);
-	//       history.push("/twofactor");
-	//     }
-	//   }
-	//   if (obj.status === 401 && obj.success == false) {
-	//     let errorMessage = "";
-	//     obj.message == "username_does_not_match"
-	//       ? (errorMessage = "Username does not match")
-	//       : (errorMessage = "Password does not match");
-	//     yield put(apiError(errorMessage));
-	//   }
-	// } catch (error) {
-	// yield put(apiError(error));
-
-	// }
-	fetch(`https://api.devapp.one/auth/login`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Access-Control-Allow-Origin': 'https://wdn-chat-client.vercel.app',
-			'Access-Control-Allow-Credentials': 'true',
-		},
-		body: JSON.stringify({
-			username: username,
-			password: password,
-			device_id: device_id,
-		}),
-	})
-		.then((response) => {
-			return response.text();
-		})
-		.then((result) => {
-			let obj = JSON.parse(result);
-			console.log(obj);
-			Cookies.set('access_token', obj.access_token);
-
-			return result;
+	try {
+		const response = yield call(create, 'auth/login', {
+			username,
+			password,
+			device_id,
 		});
+		let obj = JSON.parse(response);
+		if (obj.error && obj.error.code === 404) {
+			yield put(apiError('Connection error, please try again.'));
+		}
+		if (obj.status === 200 && obj.success == true) {
+			if (obj.two_factor == 0) {
+				Cookies.set('access_token', obj.access_token);
+				const user = yield call(get, 'profile');
+				let newUser = JSON.parse(user);
+				console.log(newUser);
 
-	// fetch('https://api.devapp.one');
+				history.push('/dashboard');
+			} else if (obj.two_factor == 1) {
+				Cookies.set('base_64', obj.base64_code);
+				history.push('/twofactor');
+			}
+		}
+		if (obj.status === 401 && obj.success == false) {
+			let errorMessage = '';
+			obj.message == 'username_does_not_match' ? (errorMessage = 'Username does not match') : (errorMessage = 'Password does not match');
+			yield put(apiError(errorMessage));
+		}
+	} catch (error) {
+		yield put(apiError(error));
+	}
 }
 
 /**
